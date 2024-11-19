@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OpenCV_HoughLines" xsi:schemaLocation="http://schemas.intempora.com/RTMaps/2011/ComponentResources http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>OS-independent</TargetOS>
+<Lang lang="ENG">
+<GroupName>Image processing</GroupName>
+<Documentation>
+<Component>
+<Alias>Hough Lines</Alias>
+<Description><![CDATA[
+Finds lines in a binary image using the Hough transform.<br/><br/>
+]]></Description>
+</Component>
+<Property MAPSName="method">
+<Alias>Method</Alias>
+<Description><![CDATA[The Hough transform variant, one of:
+<ul>
+    <li><code>standard</code> - classical or standard Hough transform. Every line is represented by two floating-point numbers
+         (rho, theta), where rho is a distance between the (0,0) point and the line, and theta is the angle
+         between the x-axis and the normal to the line.</li>
+    <li><code>probabilistic</code> - probabilistic Hough transform (more efficient when the image contains
+    a few long linear segments). It returns line segments rather than the whole lines.
+    <li><code>multi scale</code> - multi-scale variant of classical Hough transform.</li>
+    The lines are encoded the same way as in <code>standard</code> mode.</li>
+    </ul>
+
+]]></Description>
+</Property>
+<Property MAPSName="dist_resolution">
+<Alias>Distance resolution</Alias>
+<Description><![CDATA[Distance resolution in pixel-related units.]]></Description>
+</Property>
+<Property MAPSName="angle_resolution">
+<Alias>Angle resolution</Alias>
+<Description><![CDATA[Angle resolution measured in radians.]]></Description>
+</Property>
+<Property MAPSName="threshold">
+<Alias>Threshold</Alias>
+<Description><![CDATA[Threshold parameter. A line is returned by the function if the corresponding accumulator value is greater than threshold.]]></Description>
+</Property>
+<Property MAPSName="param1">
+<Alias>Param 1</Alias>
+<Description><![CDATA[The first method-dependent parameter:<ul>
+              <li>For classical Hough transform it is not used (0).</li>
+              <li>For probabilistic Hough transform it is the minimum line length.</li>
+              <li>For multi-scale Hough transform it is divisor for distance resolution <code>rho</code>.
+              (The coarse distance resolution will be <code>rho</code> and the accurate resolution will be (<code>rho</code> / <code>param1</code>)).</li>
+              </ul>]]></Description>
+</Property>
+<Property MAPSName="param2">
+<Alias>Param 2</Alias>
+<Description><![CDATA[The second method-dependent parameter:<ul>
+              <li>For classical Hough transform it is not used (0).</li>
+              <li>For probabilistic Hough transform it is the maximum gap between line segments lieing on the same line to
+                  treat them as the single line segment (i.e. to join them).</li>
+              <li>For multi-scale Hough transform it is the divisor for angle resolution <code>theta</code>.
+              (The coarse angle resolution will be <code>theta</code> and the accurate resolution will be (<code>theta</code> / <code>param2</code>)).</li>
+              </ul>]]></Description>
+</Property>
+<Property MAPSName="output_edges_image">
+<Alias>Output edges images</Alias>
+<Description><![CDATA[If set to <code>true</code>, an additional output will be created in the component to provide a vizualisation of the edge detection algorithm results.]]></Description>
+</Property>
+<Property MAPSName="edges_threshold1">
+<Alias>Edges threshold 1</Alias>
+<Description><![CDATA[First threshold for the Canny edge detection method. (see Gradients and Edges component).]]></Description>
+</Property>
+<Property MAPSName="edges_threshold2">
+<Alias>Edges threshold 2</Alias>
+<Description><![CDATA[Second threshold for the Canny edge detection method. (see Gradients and Edges component).]]></Description>
+</Property>
+<Property MAPSName="edges_aperture">
+<Alias>Edges aperture</Alias>
+<Description><![CDATA[Aperture size for the Canny edge detection method. Must be 3, 5 or 7 for cvCanny. (see Gradients and Edges component).]]></Description>
+</Property>
+<Property MAPSName="threaded">
+<Alias>threaded</Alias>
+<Description/>
+</Property>
+<Property MAPSName="priority">
+<Alias>priority</Alias>
+<Description/>
+</Property>
+<Output MAPSName="linesObjects">
+<Alias>linesObjects</Alias>
+<Description><![CDATA[Result lines, in the form of Overlay Drawing objects. (use the Overlay Drawing component from the <code>Viewers</code>
+section in order to be able to overlay them onto the source images.)]]></Description>
+</Output>
+<Input MAPSName="imageIn">
+<Alias>imageIn</Alias>
+<Description><![CDATA[8-bit single channel grayscale images.]]></Description>
+</Input>
+</Documentation>
+</Lang>
+</ComponentResources>

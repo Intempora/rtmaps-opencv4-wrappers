@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OpenCV_Smooth" xsi:noNamespaceSchemaLocation="http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>OS-independent</TargetOS>
+<Lang lang="ENG">
+<GroupName>Image processing</GroupName>
+<Documentation>
+<Component>
+<Alias>Smooth</Alias>
+<Description>
+<span><![CDATA[
+Smooths the image in one of several ways.]]></span>
+</Description>
+</Component>
+<Property MAPSName="type">
+<Alias>Type</Alias>
+<Description>
+<span><![CDATA[Smooth type. Supported values are:
+<ul>
+<li>Simple blur: simple blur with no scaling. Summation over a <code>pixel 
+kernel size X x kernel size Y</code> neighborhood with subsequent scaling by <code>1/(kernel size X x kernel size Y)</code>.</li>
+<li>Gaussian blur: convolving image with <code>kernel size X x kernel size Y</code> Gaussian kernel.</li>
+<li>Median blur: finding median of <code>kernel size x kernel size</code> neighborhood (i.e. the neighborhood is square).</li>
+<li>Bilateral filter: applying bilateral 3x3 filtering. Information about bilateral filtering
+can be found at <a href="http://www.dai.ed.ac.uk/CVonline/LOCAL_COPIES/MANDUCHI1/Bilateral_Filtering.html">
+http://www.dai.ed.ac.uk/CVonline/LOCAL_COPIES/MANDUCHI1/Bilateral_Filtering.html</a></li>
+</ul>]]></span>
+</Description>
+</Property>
+<Property MAPSName="use_ROI_input">
+<Alias>Use ROI input</Alias>
+<Description>
+<span><![CDATA[<p>
+Use Region of Interest Input. If not set to Disabled, an additional input will
+be created in order to specify a sub-rectangle to apply to the image
+on which the smoothing operation will be performed. The other parts of the image
+will be left untouched.
+</p><p>
+The ROI input can be specified in the form of Rectangle Drawing Objects, Rectangle
+coordinates in pixels in the form of a vector of 4 integers (left, top, width, height),
+or in rectangle relative coordinates in the form of a vector of 4 floats between 0.0 and 1.0
+(left, top, width, height).
+</p>]]></span>
+</Description>
+</Property>
+<Property MAPSName="threaded">
+<Alias>threaded</Alias>
+<Description/>
+</Property>
+<Property MAPSName="priority">
+<Alias>priority</Alias>
+<Description/>
+</Property>
+<Property MAPSName="kernel_size_x">
+<Alias>Kernel size X</Alias>
+<Description>
+<span><![CDATA[Horizontal size of the kernel for simple blur and gaussian blur.]]></span>
+</Description>
+</Property>
+<Property MAPSName="kernel_size_y">
+<Alias>Kernel size Y</Alias>
+<Description>
+<span><![CDATA[Vertical size of the kernel for simple blur and gaussian blur.]]></span>
+</Description>
+</Property>
+<Property MAPSName="gaussian_sigma">
+<Alias>Gaussian sigma</Alias>
+<Description>
+<span><![CDATA[This parameter specifies Gaussian sigma (standard deviation).
+              If this property is set to zero, sigma is calculated from the kernel size:<br/>
+              <pre>              sigma = (n/2 - 1)*0.3 + 0.8, where n=kernel size X for horizontal kernel,
+                                                 n=kernel size Y for vertical kernel.
+              </pre>
+              With the standard sigma for small kernels (3x3 to 7x7) the performance is better.
+              If <code>gaussian sigma</code> is not zero, while <code>kernel size X</code> and <code>kernel size Y</code>
+              are zero, the kernel size is calculated from the sigma (to provide accurate enough operation).<br/>]]></span>
+</Description>
+</Property>
+<Property MAPSName="gaussian_sigma_vert">
+<Alias>Gaussian sigma vert</Alias>
+<Description>
+<span><![CDATA[In case of non-square Gaussian kernel the parameter may be used to specify a different (from Gaussian sigma) sigma in the vertical direction.]]></span>
+</Description>
+</Property>
+<Property MAPSName="kernel_size">
+<Alias>Kernel size</Alias>
+<Description>
+<span><![CDATA[Kernel size (the kernel is a square) for the Median blur.]]></span>
+</Description>
+</Property>
+<Property MAPSName="color_sigma">
+<Alias>Color sigma</Alias>
+<Description>
+<span><![CDATA[Information about bilateral filtering
+                                      can be found at <a href="http://www.dai.ed.ac.uk/CVonline/LOCAL_COPIES/MANDUCHI1/Bilateral_Filtering.html">
+                                                      http://www.dai.ed.ac.uk/CVonline/LOCAL_COPIES/MANDUCHI1/Bilateral_Filtering.html</a>]]></span>
+</Description>
+</Property>
+<Property MAPSName="space_sigma">
+<Alias>Space sigma</Alias>
+<Description>
+<span><![CDATA[Information about bilateral filtering
+                                      can be found at <a href="http://www.dai.ed.ac.uk/CVonline/LOCAL_COPIES/MANDUCHI1/Bilateral_Filtering.html">
+                                                      http://www.dai.ed.ac.uk/CVonline/LOCAL_COPIES/MANDUCHI1/Bilateral_Filtering.html</a>]]></span>
+</Description>
+</Property>
+<Output MAPSName="imageOut">
+<Alias>imageOut</Alias>
+<Description/>
+</Output>
+<Input MAPSName="imageIn">
+<Alias>imageIn</Alias>
+<Description/>
+</Input>
+</Documentation>
+</Lang>
+</ComponentResources>

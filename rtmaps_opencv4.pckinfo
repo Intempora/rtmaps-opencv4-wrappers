@@ -1,0 +1,3 @@
+# Package information
+VERSION=2.5.3
+DESCRIPTION=Wrappers to some OpenCV image processing functions.

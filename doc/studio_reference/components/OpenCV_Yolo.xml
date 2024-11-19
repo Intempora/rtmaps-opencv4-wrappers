@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OpenCV_Yolo" xsi:schemaLocation="http://schemas.intempora.com/RTMaps/2011/ComponentResources http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>OS-independent</TargetOS>
+<Lang lang="ENG">
+<GroupName>Image processing</GroupName>
+<Documentation>
+<Component>
+<Alias>Yolo DNN</Alias>
+<Description><![CDATA[
+This component runs a DNN object detection algorithm on images. It has been tested with Yolo nets and sample files provided in the opencv_extra/ repository (<a href="https://github.com/opencv/opencv_extra" target=_blank>https://github.com/opencv/opencv_extra</a>).
+
+<p>
+<img src=OpenCV_Yolo.jpg></img>
+</p>]]>
+</Description>
+</Component>
+<Property MAPSName="cfg_path">
+<Alias>Path to .cfg file</Alias>
+<Description>
+<span><![CDATA[Text file containing network configuration (e.g. yolov4-tiny.cfg).]]></span>
+</Description>
+<Flag name="File">cfg</Flag>
+</Property>
+<Property MAPSName="weights_path">
+<Alias>Path to .weights file</Alias>
+<Description>
+<span><![CDATA[Binary file containing trained weights (e.g. yolov4-tiny.weights).]]></span>
+</Description>
+<Flag name="File">weights</Flag>
+</Property>
+<Property MAPSName="names_path">
+<Alias>Path to .names file</Alias>
+<Description>
+<span><![CDATA[Text file containing the class names (one per line) corresponding to the class IDs provided by the DNN detection (e.g. yolov4_classes.txt).]]></span>
+</Description>
+<Flag name="File">txt names</Flag>
+</Property>
+<Property MAPSName="confidence_threshold">
+<Alias>Confidence threshold</Alias>
+<Description>
+<span><![CDATA[A threshold to filter detection confidence.]]></span>
+</Description>
+</Property>
+<Property MAPSName="nms_threshold">
+<Alias>NMS threshold</Alias>
+<Description>
+<span><![CDATA[A threshold to filter overlapping detection boxes (non maximum suppression).]]></span>
+</Description>
+</Property>
+<Property MAPSName="text_thickness">
+<Alias>Text thickness</Alias>
+<Description>
+<span><![CDATA[Thickness of the text integrated in the image.]]></span>
+</Description>
+</Property>
+<Output MAPSName="bounding_boxes">
+<Alias>Bounding boxes</Alias>
+<Description>
+<span><![CDATA[Vector of RTMaps "Drawing Objects" (2D objects in pixel coordinates) with type Rectangle, as bounding boxes of detected objects. Each object class is assigned an arbitrary color. Those 2D objects can be drawn on the originating images with an Overlay Drawing component (Viewers section in Registered Components).]]></span>
+</Description>
+</Output>
+<Output MAPSName="labels">
+<Alias>Labels</Alias>
+<Description>
+<span><![CDATA[Vector of RTMaps "Drawing Objects" (2D objects, in pixel coordinates), with one element per detected object, with type "Text", providing the class name of the detected objects next to the corresponding bounding box.<br/>
+These labels can be drawn on the originating images with an Overlay Drawing component, usually with a second drawing objects channel next to the drawing objects channel associated to the bounding boxes.]]></span>
+</Description>
+</Output>
+<Input MAPSName="imageIn">
+<Alias>Image in</Alias>
+<Description>
+<span><![CDATA[A 3-channel IplImage (usually RGB or BGR, 24 bits per pixel).]]></span>
+</Description>
+</Input>
+</Documentation>
+</Lang>
+</ComponentResources>

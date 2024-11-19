@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OpenCV_HistogramEqualize" xsi:schemaLocation="http://schemas.intempora.com/RTMaps/2011/ComponentResources http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>OS-independent</TargetOS>
+<Lang lang="ENG">
+<GroupName>Image processing</GroupName>
+<Documentation>
+<Component>
+<Alias>Histogram Equalize</Alias>
+<Description><![CDATA[
+Equalizes histogram of a grayscale image.<br/><br/>
+<p>
+The function <code>cvEqualizeHist</code> equalizes histogram of the input image
+using the following algorithm:</p>
+<pre>
+1. calculate histogram H for src.
+2. normalize histogram, so that the sum of histogram bins is 255.
+3. compute integral of the histogram:
+   H&#146;(i) = sum<sub>0&lt;=j&lt;=i</sub>H(j)
+4. transform the image using H&#146; as a look-up table: dst(x,y)=H&#146;(src(x,y))
+</pre>
+
+<p>The algorithm normalizes brightness and increases contrast of the image.</p>
+]]></Description>
+</Component>
+<Property MAPSName="threaded">
+<Alias>threaded</Alias>
+<Description/>
+</Property>
+<Property MAPSName="priority">
+<Alias>priority</Alias>
+<Description/>
+</Property>
+<Output MAPSName="imageOut">
+<Alias>imageOut</Alias>
+<Description/>
+</Output>
+<Input MAPSName="imageIn">
+<Alias>imageIn</Alias>
+<Description/>
+</Input>
+</Documentation>
+</Lang>
+</ComponentResources>

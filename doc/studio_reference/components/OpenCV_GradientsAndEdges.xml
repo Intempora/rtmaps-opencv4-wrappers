@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OpenCV_GradientsAndEdges" xsi:schemaLocation="http://schemas.intempora.com/RTMaps/2011/ComponentResources http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>OS-independent</TargetOS>
+<Lang lang="ENG">
+<GroupName>Image processing</GroupName>
+<Documentation>
+<Component>
+<Alias>Gradients and Edges</Alias>
+<Description><![CDATA[
+<p>This component can handle several type of gradients and edges calculations from
+the OpenCV library such as Sobel, Laplacian and Canny filters.</p>
+]]></Description>
+</Component>
+<Property MAPSName="type">
+<Alias>Type</Alias>
+<Description><![CDATA[<p>Determines the type of operator to apply to the incoming images:</p>
+<ul>
+<li>Sobel:
+<pre>
+Calculates first, second, third or mixed image derivatives using extended Sobel operator
+</pre>
+In case of the Sobel operator, the following properties are available:<br/><br/>
+<code>Aperture size:</code> Size of the extended Sobel kernel, must be 1, 3, 5 or 7. 
+In all cases except 1, <code>aperture_size x aperture_size</code> separable kernel will 
+be used to calculate the derivative. For aperture_size=1, 3x1 or 1x3 kernel 
+is used (Gaussian smoothing is not done).<br/><br/>
+<code>X order:</code> Order of the derivative x.<br/><br/>
+<code>Y order:</code> Order of the derivative y.<br/><br/>
+<p>
+The applied Sobel function calculates the image derivative by convolving the image
+with the appropriate kernel:</p>
+<pre>
+dst(x,y) = d<sup>xorder+yoder</sup>src/dx<sup>xorder</sup>.dy<sup>yorder</sup> |<sub>(x,y)</sub>
+
+</pre>
+<p>
+The Sobel operators combine Gaussian smoothing and differentiation so the result is more or less
+robust to the noise. Most often, the function is called with (xorder=1, yorder=0, aperture_size=3) or
+(xorder=0, yorder=1, aperture_size=3) to calculate first x- or y- image derivative.
+The first case corresponds to</p>
+<pre>
+  |-1  0  1|
+  |-2  0  2|
+  |-1  0  1|
+</pre>
+<p>kernel and the second one corresponds to</p>
+<pre>
+  |-1 -2 -1|
+  | 0  0  0|
+  | 1  2  1|
+or
+  | 1  2  1|
+  | 0  0  0|
+  |-1 -2 -1|
+</pre>
+kernel, depending on the image origin (<code>origin</code> field of <code>IplImage</code> structure).
+No scaling is done, so the destination image usually is larger by absolute value numbers than
+the source image. 
+</li>
+<li>Laplace:
+<pre>
+Calculates Laplacian of the image
+</pre>
+In case of the Laplace operator, the following properties are available:<br/><br/>
+<code>Aperture size:</code> Aperture size which has the same meaning as for Sobel.<br/><br/>
+<p>
+The function <code>cvLaplace</code> calculates the Laplacian of the source image by summing
+second x- and y- derivatives calculated using the Sobel operator:</p>
+<pre>
+dst(x,y) = d<sup>2</sup>src/dx<sup>2</sup> + d<sup>2</sup>src/dy<sup>2</sup>
+
+</pre>
+<p>
+Specifying <code>aperture_size</code>=1 gives the fastest variant that is equal to
+convolving the image with the following kernel:</p>
+<pre>
+|0  1  0|
+|1 -4  1|
+|0  1  0|
+</pre><p>
+Similar to the <code>Sobel</code> function, no scaling is done and the same combinations of input and
+output formats are supported.
+</p>
+</li>
+<li>Canny:
+<pre>
+Implements Canny algorithm for edge detection.
+</pre>
+In case of the Canny operator, the following properties are available:<br/><br/>
+<code>Aperture size:</code> Aperture size which has the same meaning as for Sobel.<br/><br/>
+<code>Threshold 1:</code> The first threshold.<br/><br/>
+<code>Threshold 2:</code> The second threshold.<br/><br/>
+The Canny function finds the edges on the input image image and marks them in the 
+output image edges using the Canny algorithm. 
+The smallest of threshold1 and threshold2 is used for edge linking, 
+the largest - to find initial segments of strong edges.
+</li>
+</ul>
+]]></Description>
+</Property>
+<Property MAPSName="threaded">
+<Alias>threaded</Alias>
+<Description/>
+</Property>
+<Property MAPSName="priority">
+<Alias>priority</Alias>
+<Description/>
+</Property>
+<Property MAPSName="aperture_size">
+<Alias>Aperture size</Alias>
+<Description/>
+</Property>
+<Property MAPSName="xorder">
+<Alias>X order</Alias>
+<Description/>
+</Property>
+<Property MAPSName="yorder">
+<Alias>Y order</Alias>
+<Description/>
+</Property>
+<Property MAPSName="threshold1">
+<Alias>Threshold 1</Alias>
+<Description/>
+</Property>
+<Property MAPSName="threshold2">
+<Alias>Threshold 2</Alias>
+<Description/>
+</Property>
+<Output MAPSName="imageOut">
+<Alias>imageOut</Alias>
+<Description/>
+</Output>
+<Input MAPSName="imageIn">
+<Alias>imageIn</Alias>
+<Description/>
+</Input>
+</Documentation>
+</Lang>
+</ComponentResources>

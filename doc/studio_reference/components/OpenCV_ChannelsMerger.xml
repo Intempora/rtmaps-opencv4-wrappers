@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OpenCV_ChannelsMerger" xsi:schemaLocation="http://schemas.intempora.com/RTMaps/2011/ComponentResources http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>OS-independent</TargetOS>
+<Lang lang="ENG">
+<GroupName>Image processing</GroupName>
+<Documentation>
+<Component>
+<Alias>Channels Merger</Alias>
+<Description><![CDATA[
+Composes a multi-channel array from several 
+single-channel arrays or inserts a single channel into the array.]]></Description>
+</Component>
+<Property MAPSName="outputChannelSeq">
+<Alias>Output channel seq</Alias>
+<Description><![CDATA[Determines the channel sequence of the reconstructed images.]]></Description>
+</Property>
+<Property MAPSName="outputPlanar">
+<Alias>Output planar</Alias>
+<Description><![CDATA[Defines whether the reconstructed image will be planar-oriented or pixel-oriented.<br/>
+Example for RGB images:<br/>
+Planar oriented images are organized as follows:<br/>
+RRRR....<br/>
+GGGG....<br/>
+BBBB....<br/>
+Pixel-oriented images are organized as follows:<br/>
+RGBRGB...<br/>
+RGBRGB...<br/>
+RGBRGB...<br/>
+]]></Description>
+</Property>
+<Property MAPSName="threaded">
+<Alias>threaded</Alias>
+<Description/>
+</Property>
+<Property MAPSName="priority">
+<Alias>priority</Alias>
+<Description/>
+</Property>
+<Output MAPSName="imageOut">
+<Alias>imageOut</Alias>
+<Description/>
+</Output>
+<Input MAPSName="channel1">
+<Alias>channel1</Alias>
+<Description><![CDATA[First image with channel 1 data. This image has to be declared as a 1 channel GRAY image.]]></Description>
+</Input>
+<Input MAPSName="channel2">
+<Alias>channel2</Alias>
+<Description><![CDATA[First image with channel 2 data. This image has to be declared as a 1 channel GRAY image.]]></Description>
+</Input>
+<Input MAPSName="channel3">
+<Alias>channel3</Alias>
+<Description><![CDATA[First image with channel 3 data. This image has to be declared as a 1 channel GRAY image.]]></Description>
+</Input>
+</Documentation>
+</Lang>
+</ComponentResources>

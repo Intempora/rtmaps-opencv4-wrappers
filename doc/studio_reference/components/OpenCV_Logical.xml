@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OpenCV_Logical" xsi:schemaLocation="http://schemas.intempora.com/RTMaps/2011/ComponentResources http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>OS-independent</TargetOS>
+<Lang lang="ENG">
+<GroupName>Image processing</GroupName>
+<Documentation>
+<Component>
+<Alias>Logical Operations</Alias>
+<Description><![CDATA[
+Performs logical binary operations on the input images (such as AND, OR and XOR).]]></Description>
+</Component>
+<Property MAPSName="operation">
+<Alias>Operation</Alias>
+<Description><![CDATA[Binary operation to perform on the input images.]]></Description>
+</Property>
+<Property MAPSName="inputs_reader_mode">
+<Alias>Inputs reader mode</Alias>
+<Description><![CDATA[Determines when the calculation is applied to the input images:<br/>
+<code>Synchronized</code> means that the component will wait for two input images
+that have the same timestamp on its 2 inputs (or approximately the same depending
+on the "Synchro tolerance" property) before performing the addition.<br/>
+<code>Triggered by input 1</code> means that the component will perform the addition
+each time an image arrives on input 1. The last available image on input 2 will then
+be taken into account in the addition.<br/>
+<code>Triggered by inputs 1 &amp; 2</code> means that the component will perform the addition
+each time an image arrives either on input 1 or 2. The last available image on the
+other input will then be taken into account in the addition.<br/>]]></Description>
+</Property>
+<Property MAPSName="threaded">
+<Alias>threaded</Alias>
+<Description/>
+</Property>
+<Property MAPSName="priority">
+<Alias>priority</Alias>
+<Description/>
+</Property>
+<Property MAPSName="synchro_tolerance">
+<Alias>Synchro tolerance</Alias>
+<Description><![CDATA[If the Inputs reader mode is set to <code>Synchronized</code>, the Synchro tolerance
+determines the tolerated timestamps difference between the incoming images on the 
+2 inputs so that they can pass the processing loop.<br/>
+The Synchro tolerance is expressed in microseconds.<br/>]]></Description>
+</Property>
+<Output MAPSName="imageOut">
+<Alias>imageOut</Alias>
+<Description/>
+</Output>
+<Input MAPSName="imageIn1">
+<Alias>imageIn1</Alias>
+<Description/>
+</Input>
+</Documentation>
+</Lang>
+</ComponentResources>

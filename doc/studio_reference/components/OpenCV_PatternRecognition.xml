@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OpenCV_PatternRecognition" xsi:schemaLocation="http://schemas.intempora.com/RTMaps/2011/ComponentResources http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>Windows</TargetOS>
+<Lang lang="ENG">
+<GroupName>Image processing</GroupName>
+<Documentation>
+<Component>
+<Alias>Pattern Recognition</Alias>
+<Description><![CDATA[
+This component exposes the Face Detection algorithms from the 
+<a href="http://sourceforge.net/projects/opencvlibrary/">OpenCV</a>
+image processing library from Intel.
+The following documentation originates from the OpenCV documentation.
+
+<hr/><h1><a name="cv_pattern">Pattern Recognition</a></h1>
+
+<hr/><h2><a name="cv_pattern_objdetection">Object Detection</a></h2>
+
+<p>
+The object detector described below has been initially proposed by Paul Viola
+and improved by Rainer Lienhart.
+First, a classifier (namely a <code>cascade of boosted classifiers working
+with haar-like features</code>) is trained with a few hundreds of sample
+views of a particular object (i.e., a face or a car), called positive
+examples, that are scaled to the same size (say, 20x20), and negative examples
+- arbitrary images of the same size.
+
+</p><p>
+After a classifier is trained, it can be applied to a region of interest (of
+the same size as used during the training) in an input image. The
+classifier outputs a "1" if the region is likely to show the object
+(i.e., face/car), and "0" otherwise. To search for the object in the
+whole image one can move the search window across the image and check
+every location using the classifier. The classifier is designed so that it can
+be easily "resized" in order to be able to find the objects of interest
+at different sizes, which is more efficient than resizing the image itself. So,
+to find an object of an unknown size in the image the scan procedure should be
+done several times at different scales.
+</p>
+<p>
+The word "cascade" in the classifier name means that the resultant classifier
+consists of several simpler classifiers (<code>stages</code>) that are applied
+subsequently to a region of interest until at some stage the candidate
+is rejected or all the stages are passed. The word
+"boosted" means that the classifiers at every stage of the cascade are complex
+themselves and they are built out of basic classifiers using one of four
+different <code>boosting</code> techniques (weighted voting). Currently
+Discrete Adaboost, Real Adaboost, Gentle Adaboost and Logitboost are supported.
+The basic classifiers are decision-tree classifiers with at least
+2 leaves. Haar-like features are the input to the basic classifers, and
+are calculated as described below. The current algorithm uses the following
+Haar-like features:</p>
+<p>
+<img src="haarfeatures.png">
+</p>
+<p>
+The feature used in a particular classifier is specified by its shape (1a,
+2b etc.), position within the region of interest and the scale (this scale is
+not the same as the scale used at the detection stage, though these two scales
+are multiplied). For example, in case of the third line feature (2c) the
+response is calculated as the difference between the sum of image pixels
+under the rectangle covering the whole feature (including the two white
+stripes and the black stripe in the middle) and the sum of the image
+pixels under the black stripe multiplied by 3 in order to compensate for
+the differences in the size of areas. The sums of pixel values over a
+rectangular regions are calculated rapidly using integral images.
+
+<code>cvIntegral</code> description).
+</p>
+<p>
+The following reference is for the detection part only. There is a
+separate application called <code>haartraining</code> that can train a
+cascade of boosted classifiers from a set of samples.
+See <code>opencv/apps/haartraining</code> for details.
+</p>
+<p>
+The function <code>cvHaarDetectObjects</code> finds
+rectangular regions in the given image that are likely to contain objects
+the cascade has been trained for and returns those regions as
+a sequence of rectangles. The function scans the image several
+times at different scales. Each time it considers
+overlapping regions in the image and applies the classifiers to the regions
+using cvRunHaarClassifierCascade.
+It may also apply some heuristics to reduce number of analyzed regions, such as
+Canny prunning. After it has proceeded and collected the candidate rectangles
+(regions that passed the classifier cascade), it groups them and returns a
+sequence of average rectangles for each large enough group. The default
+parameters (<code>scale_factor</code>=1.1, <code>min_neighbors</code>=3, <code>flags</code>=0)
+are tuned for accurate yet slow object detection. For a faster operation on
+real video images the settings are: <code>scale_factor</code>=1.2, <code>min_neighbors</code>=2,
+
+<code>flags</code>=CV_HAAR_DO_CANNY_PRUNING, <code>min_size</code>=&lt;minimum possible face size&gt;
+(for example, ~1/4 to 1/16 of the image area in case of video conferencing).
+</p>
+]]></Description>
+</Component>
+<Property MAPSName="cascade_xml_file">
+<Alias>Cascade xml file</Alias>
+<Description><![CDATA[Haar classifier cascade contained in an xml file.<br/>
+This file contains the information of the learning phase.]]></Description>
+<DefaultValue>haarcascade_frontalface_alt.xml</DefaultValue>
+<Flag name="File">xml</Flag>
+</Property>
+<Property MAPSName="image_down_scaling">
+<Alias>Image down scaling</Alias>
+<Description><![CDATA[Internal downscaling applied to the image before running the 
+object detection
+algorithm.<br/>
+"2" means less CPU usage (by a factor of 4), while "None" means more 
+accurate detection.
+]]></Description>
+</Property>
+<Property MAPSName="scale_factor">
+<Alias>Scale factor</Alias>
+<Description><![CDATA[The factor by which the search window is scaled between the subsequent scans,
+for example, 1.1 means increasing window by 10%.<br/>
+Larger values mean less CPU time.<br/>
+Smaller values mean more robust detections.<br/>]]></Description>
+</Property>
+<Property MAPSName="min_neighbors">
+<Alias>Min neighbors</Alias>
+<Description><![CDATA[Minimum number (minus 1) of neighbor rectangles
+that make up an object. All the groups of a smaller number of rectangles 
+than <code>min_neighbors</code>-1 are rejected.
+If <code>min_neighbors</code> is 0, the function does not do any
+grouping at all and returns all the detected candidate rectangles,
+which may be useful if the user wants to apply a customized grouping procedure.<br/>
+Smaller values mean more CPU usage.<br/>
+Larger values mean fewer false detections.<br/>
+]]></Description>
+</Property>
+<Property MAPSName="min_size">
+<Alias>Min size</Alias>
+<Description><![CDATA[Minimum window size (represented as a fraction of the input image width).<br/>
+Ex : 1/4 means 80 pixels for a 320x240 image.<br/>
+Larger values (1/4) mean less CPU time. Smaller values (1/16) mean ability to detect 
+smaller objects.]]></Description>
+</Property>
+<Property MAPSName="output_largest_object_only">
+<Alias>Output largest object only</Alias>
+<Description><![CDATA[If <code>true</code>, only the largest detected object will be output as a result.
+<br/>
+Otherwise, the component can output up to 10 objects within each image.]]></Description>
+</Property>
+<Property MAPSName="threaded">
+<Alias>threaded</Alias>
+<Description/>
+</Property>
+<Property MAPSName="priority">
+<Alias>priority</Alias>
+<Description/>
+</Property>
+<Property MAPSName="bounding_boxes_width">
+<Alias>Bounding boxes width</Alias>
+<Description><![CDATA[Defines the line width of the generated bounding boxes on the first output. ]]></Description>
+<DefaultValue>1</DefaultValue>
+</Property>
+<Property MAPSName="bounding_boxes_color">
+<Alias>Bounding boxes color</Alias>
+<Description><![CDATA[Defines the color for the generated bounding boxes on the first output.]]></Description>
+<DefaultValue>255</DefaultValue>
+<Flag name="Color"/>
+</Property>
+<Output MAPSName="boundingBoxes">
+<Alias>boundingBoxes</Alias>
+<Description><![CDATA[Bounding rectangles containing the detected object(s).<br/>
+]]></Description>
+</Output>
+<Output MAPSName="centerCoords">
+<Alias>centerCoords</Alias>
+<Description><![CDATA[Vector of integers containing pairs of coordinates indicating the X and Y
+center position of each detected object. ]]></Description>
+</Output>
+<Input MAPSName="imageIn">
+<Alias>imageIn</Alias>
+<Description><![CDATA[Input images.<br/>
+Supported formats are RGB, BGR and GRAY images.]]></Description>
+</Input>
+</Documentation>
+</Lang>
+</ComponentResources>

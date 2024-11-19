@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OpenCV_PointsTracking" xsi:schemaLocation="http://schemas.intempora.com/RTMaps/2011/ComponentResources http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>OS-independent</TargetOS>
+<Lang lang="ENG">
+<GroupName>Image processing</GroupName>
+<Documentation>
+<Component>
+<Alias>Points tracking</Alias>
+<Description><![CDATA[
+Performs points tracking algorithms within the image flow.<br/>
+The points to track can be provided through the second input, or can be automatically
+selected via the <code>Auto init</code> action.]]></Description>
+</Component>
+<Property MAPSName="max_nb_points_to_track">
+<Alias>Max nb points to track</Alias>
+<Description><![CDATA[Maximum number of points that the component will be able to track.
+]]></Description>
+</Property>
+<Property MAPSName="auto_init_at_start">
+<Alias>Auto init at start</Alias>
+<Description><![CDATA[If set to <code>true</code>, the component will perform an automatic initialization
+of the points to be tracked when it receives the first image. In other words, it will choose which points to track.
+The auto initialization is made the same way as with the <code>Auto init</code> action.
+If this property is set to <code>false</code>, the points to track have to be provided
+through the pointsToTrack input or the <code>Auto init</code> action.]]></Description>
+</Property>
+<Property MAPSName="use_auto_init_trigger_input">
+<Alias>Use auto init trigger input</Alias>
+<Description><![CDATA[If set to <code>true</code>, an additional input will be created so that 
+the auto initialization procedure will be called each time any piece of data arrives
+on this input. The actual content of the data is ignored; it is only used as an event
+to trigger the procedure.]]></Description>
+</Property>
+<Property MAPSName="threaded">
+<Alias>threaded</Alias>
+<Description/>
+</Property>
+<Property MAPSName="priority">
+<Alias>priority</Alias>
+<Description/>
+</Property>
+<Property MAPSName="spots_width">
+<Alias>Spots width</Alias>
+<Description><![CDATA[Defines the line width to be used to draw the spots generated on the trackedPointsObjects
+output.]]></Description>
+<DefaultValue>1</DefaultValue>
+</Property>
+<Property MAPSName="spots_color">
+<Alias>Spots color</Alias>
+<Description><![CDATA[Defines the color to be used for drawing the spots generated on the trackedPointsObjects
+output.]]></Description>
+<Flag name="Color"/>
+</Property>
+<Output MAPSName="trackedPointsCoords">
+<Alias>trackedPointsCoords</Alias>
+<Description><![CDATA[Pairs of (x,y) coordinates in the form of a vector of integers. They represent the
+result coordinates of the points tracked from the previous image.<br/>
+When a point is lost, the coordinates for this point are set to (-10,-10).]]></Description>
+</Output>
+<Output MAPSName="trackedPointsObjects">
+<Alias>trackedPointsObjects</Alias>
+<Description><![CDATA[Same as <code>trackedPointsCoords</code> but represented in the form of Overlay Drawing
+Spots (that can be overlaid onto an image via the Overlay Drawing component, or displayed
+via the Objects Viewer component).]]></Description>
+</Output>
+<Output MAPSName="previousPointsCoords">
+<Alias>previousPointsCoords</Alias>
+<Description><![CDATA[Pairs of (x,y) pixel coordinates in the form of a vector of integers representing
+the positions of the points as they were in the previous image.]]></Description>
+</Output>
+<Input MAPSName="imageIn">
+<Alias>imageIn</Alias>
+<Description/>
+</Input>
+<Input MAPSName="pointsToTrack">
+<Alias>pointsToTrack</Alias>
+<Description><![CDATA[Pairs of (x,y) coordinates in the form of a vector of integers representing
+the positions of the points to be tracked.]]></Description>
+</Input>
+<Action MAPSName="autoInit">
+<Alias>Auto init</Alias>
+<Description><![CDATA[When triggered, this action resets automatically the set of tracked points with 
+a new set of points whose positions are determined automatically (the algorithm
+tries to determine which points are best suited for tracking in the image).]]></Description>
+</Action>
+<Action MAPSName="removeAllPoints">
+<Alias>Remove all points</Alias>
+<Description><![CDATA[Resets the set of tracked points.]]></Description>
+</Action>
+</Documentation>
+</Lang>
+</ComponentResources>

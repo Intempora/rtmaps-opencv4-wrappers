@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Calibration" xsi:noNamespaceSchemaLocation="http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>OS-independent</TargetOS>
+<Lang lang="ENG">
+<GroupName>Camera Calibration</GroupName>
+<Documentation>
+<Component>
+<Alias>Camera Calibration</Alias>
+<Description>
+<span><![CDATA[
+<p>This component provides a camera calibration toolbox using the OpenCV library.</p>
+<p>It allows the user to acquire images of a known pattern (chessboard) at a predefined framerate. The acquired pattern images are used to calibrate the camera
+and generate two files: Intrinsic.xml, Distorsion.xml and Extrinsic.xml. These files are saved in the same folder chosen by the last module property. PAY ATTENTION to the write rights of the chosen folder! RTMaps should have write access in it.</p>
+<p>The camera intrinsic and extrinsic parameters are computed in arbitrary units (pixels). In order to compute the absolute values of these parameters you should know the real size of the pixels or the size of the sensor and the number of pixels.</p>
+<p>Please, refer to OpenCV documentation or the Zhang calibration article in case of confusion.</p>
+<p>The Distorsion.xml file contains the lens distorsion and it is used after the calibration phase for remapping the image flow.</p>
+<p>Following the calibration, the undistorted image is shown on the 1st output, while the original sequence is copied to the 2nd output.</p>
+<p>
+{ 18/02/2014, Bogdan Stanciulescu @ Mines-ParisTech }
+</p>
+<p>
+<img src = "OpenCV_Calibration.jpg" />
+</p>]]></span>
+</Description>
+</Component>
+<Property MAPSName="Number_of_snapshots_of_the_chessboard">
+<Alias>Number of chessboard calibration snapshots</Alias>
+<Description>
+<span><![CDATA[Number of desired chessboard snapshots for calibrating the camera.]]></span>
+</Description>
+<DefaultValue>8</DefaultValue>
+</Property>
+<Property MAPSName="Frames_to_be_skipped">
+<Alias>Frames to be skipped</Alias>
+<Description>
+<span><![CDATA[A snapshot image containing the calibration chessboard will be taken every "Frames_to_be_skipped" images,  from the input sequence, until the "Number_of_snapshots_of_the_chessboard" is reached.]]></span>
+</Description>
+<DefaultValue>75</DefaultValue>
+</Property>
+<Property MAPSName="Enclosed_corners_horizontally_on_the_chessboard">
+<Alias>Enclosed corners horizontally on the chessboard</Alias>
+<Description>
+<span><![CDATA[Defines the total number of horizontally inner corners of the calibration chessboard.]]></span>
+</Description>
+<DefaultValue>9</DefaultValue>
+</Property>
+<Property MAPSName="Enclosed_corners_vertically_on_the_chessboard">
+<Alias>Enclosed corners vertically on the chessboard</Alias>
+<Description>
+<span><![CDATA[Defines the total number of vertically inner corners of the calibration chessboard.]]></span>
+</Description>
+<DefaultValue>6</DefaultValue>
+</Property>
+<Property MAPSName="Folder_path">
+<Alias>Calibration files folder path</Alias>
+<Description>
+<span><![CDATA[The path to the folder where Intrinsic.xml, Distortion.xml and Extrinsic.xml will be saved / loaded.]]></span>
+</Description>
+</Property>
+<Property MAPSName="file_path">
+<Alias>Calibration file path</Alias>
+<Description>
+<span><![CDATA[Path to the XML file containing the camera intrinsic matrix (3x3) and distortion coeffs (5x1), OpenCV format.]]></span>
+</Description>
+<Flag name="File">xml</Flag>
+</Property>
+<Property MAPSName="undist_mode">
+<Alias>Undistorion mode</Alias>
+<Description>
+<span><![CDATA[Three cropping modes are possible for undistortion:
+<ul>
+<li><b>Default</b>: the default cropping mode by OpenCV, that also corresponds to the output image size that would match for 3D objects or point clouds after projection to 2D thanks to the Projection or Projection2 components using the calibration parameters extracted with this very same component in calibration mode.<br/>
+For details: the Default mode ends up in a call to
+<code>cv::undistort(src, dst, cameraMatrix, distCoeffs);</code> with no [newCameraMatrix] argument which ends up in using there the same cameraMatrix as provided in the 3rd argument and that is computed from the calibration file.
+</li>
+<li><b>No cropping</b>: all pixels retained with some extra black zones in the resulting image at the borders.<br/>
+For details: this mode ends up in a first call to <code>getOptimalNewCameraMatrix</code> with an alpha argument set to 1.0, and then passing the return new camera matrix as newCameraMatrix arugment to <code>cv::undistort</code>
+</li>
+<li><b>Cropping</b>: Undistort image with minimum unwanted pixels. So it may remove some pixels at image corners.<br/>
+For details: this mode ends up in a first call to <code>getOptimalNewCameraMatrix</code> with an alpha argument set to 0.0, and then passing the return new camera matrix as newCameraMatrix arugment to <code>cv::undistort</code>
+</li>
+<li><b>Custom</b>: Choose the scaling factor (alpha) according to your needs thanks to a new property.
+For details: this mode ends up in a first call to <code>getOptimalNewCameraMatrix</code> with an alpha argument that can be specified in the following alpha property, and then passing the return new camera matrix as newCameraMatrix arugment to <code>cv::undistort</code>
+</li>
+</ul>]]></span>
+</Description>
+<DefaultValue>Default</DefaultValue>
+</Property>
+<Property MAPSName="alpha">
+<Alias>Alpha</Alias>
+<Description>
+<span><![CDATA[Scaling factor to be used for undistortion in Custom mode (see previous property).]]></span>
+</Description>
+<DefaultValue>0.0</DefaultValue>
+</Property>
+<Output MAPSName="Corrected_display">
+<Alias>Corrected display</Alias>
+<Description>
+<span><![CDATA[DURING CALIBRATION this outputs each snapshot-taken chessboard image. AFTER CALIBRATION it outputs the corrected undistorted image.]]></span>
+</Description>
+</Output>
+<Input MAPSName="video_in">
+<Alias>Video in</Alias>
+<Description>
+<span><![CDATA[the video stream that will be used for calibration by the component.]]></span>
+</Description>
+</Input>
+</Documentation>
+</Lang>
+</ComponentResources>

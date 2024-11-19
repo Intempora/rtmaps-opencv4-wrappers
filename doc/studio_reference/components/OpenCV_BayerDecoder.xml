@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OpenCV_BayerDecoder" xsi:schemaLocation="http://schemas.intempora.com/RTMaps/2011/ComponentResources http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>OS-independent</TargetOS>
+<Lang lang="ENG">
+<GroupName>Image processing</GroupName>
+<Documentation>
+<Component>
+<Alias>Bayer Decoder</Alias>
+<Description><![CDATA[
+<p>The Bayer pattern is widely used in CCD and CMOS cameras. It allows to get a color picture
+out of a single plane where R,G and B pixels (sensors of a particular component) are interleaved
+as follows:</p>
+
+<p>
+<table border="0" width="400">
+<tr>
+<td><font size="5" color="#ff0000"><p align="center">R</p></font></td>
+<td><font size="5" color="#008000"><p align="center">G</p></font></td>
+<td><font size="5" color="#ff0000"><p align="center">R</p></font></td>
+<td><font size="5" color="#008000"><p align="center">G</p></font></td>
+<td><font size="5" color="#ff0000"><p align="center">R</p></font></td>
+</tr><tr>
+<td><font size="5" color="#008000"><p align="center">G</p></font></td>
+<td bgcolor="pink"><font size="5" color="#0000ff" ><p align="center">B</p></font></td>
+
+<td bgcolor="pink"><font size="5" color="#008000" ><p align="center">G</p></font></td>
+<td><font size="5" color="#0000ff"><p align="center">B</p></font></td>
+<td><font size="5" color="#008000"><p align="center">G</p></font></td>
+</tr><tr>
+<td><font size="5" color="#ff0000"><p align="center">R</p></font></td>
+<td><font size="5" color="#008000"><p align="center">G</p></font></td>
+<td><font size="5" color="#ff0000"><p align="center">R</p></font></td>
+<td><font size="5" color="#008000"><p align="center">G</p></font></td>
+<td><font size="5" color="#ff0000"><p align="center">R</p></font></td>
+
+</tr><tr>
+<td><font size="5" color="#008000"><p align="center">G</p></font></td>
+<td><font size="5" color="#0000ff"><p align="center">B</p></font></td>
+<td><font size="5" color="#008000"><p align="center">G</p></font></td>
+<td><font size="5" color="#0000ff"><p align="center">B</p></font></td>
+<td><font size="5" color="#008000"><p align="center">G</p></font></td>
+</tr><tr>
+<td><font size="5" color="#ff0000"><p align="center">R</p></font></td>
+<td><font size="5" color="#008000"><p align="center">G</p></font></td>
+<td><font size="5" color="#ff0000"><p align="center">R</p></font></td>
+
+<td><font size="5" color="#008000"><p align="center">G</p></font></td>
+<td><font size="5" color="#ff0000"><p align="center">R</p></font></td>
+</tr><tr>
+<td><font size="5" color="#008000"><p align="center">G</p></font></td>
+<td><font size="5" color="#0000ff"><p align="center">B</p></font></td>
+<td><font size="5" color="#008000"><p align="center">G</p></font></td>
+<td><font size="5" color="#0000ff"><p align="center">B</p></font></td>
+<td><font size="5" color="#008000"><p align="center">G</p></font></td>
+</tr>
+</table>
+
+</p>
+<p>
+The output RGB components of a pixel are interpolated from 1, 2 or 4 neighbors of the pixel
+having the same color. There are several modifications of the above pattern that can be achieved
+by shifting the pattern one pixel left and/or one pixel up.
+The two letters in the <code>Input pattern</code> property 
+indicate the particular pattern type -
+these are components from the second row, second and third columns, respectively.
+For example, the above pattern has the very popular "BG" type.</p>
+
+
+
+]]></Description>
+</Component>
+<Property MAPSName="input_type">
+<Alias>Input type</Alias>
+<Description/>
+</Property>
+<Property MAPSName="input_pattern">
+<Alias>Input pattern</Alias>
+<Description/>
+</Property>
+<Property MAPSName="threaded">
+<Alias>threaded</Alias>
+<Description/>
+</Property>
+<Property MAPSName="priority">
+<Alias>priority</Alias>
+<Description/>
+</Property>
+<Property MAPSName="outputFormat">
+<Alias>Output format</Alias>
+<Description><![CDATA[Defines whether you want the output image channel sequence to be BGR or RGB.]]></Description>
+</Property>
+<Output MAPSName="output">
+<Alias>output</Alias>
+<Description/>
+</Output>
+<Input MAPSName="input_ipl">
+<Alias>input</Alias>
+<Description/>
+</Input>
+<Input MAPSName="input_maps">
+<Alias>input</Alias>
+<Description/>
+</Input>
+</Documentation>
+</Lang>
+</ComponentResources>

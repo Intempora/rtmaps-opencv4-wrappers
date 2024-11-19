@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OpenCV_RotateAndFlip" xsi:schemaLocation="http://schemas.intempora.com/RTMaps/2011/ComponentResources http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>OS-independent</TargetOS>
+<Lang lang="ENG">
+<GroupName>Image processing</GroupName>
+<Documentation>
+<Component>
+<Alias>Rotate and Flip</Alias>
+<Description><![CDATA[
+<p>
+This component can perform rotations and/or flip operations on the input image (+90deg, -90deg, 180 deg, horizontal flip, vertical flip).
+</p>]]></Description>
+</Component>
+<Property MAPSName="operation">
+<Alias>Operation</Alias>
+<Description/>
+</Property>
+<Output MAPSName="imageOut">
+<Alias>imageOut</Alias>
+<Description><![CDATA[Provides IplImage image types with the same image format as the input image and 
+same size unless operation is a + or - 90 degrees rotation, in which case
+image height and width are switched.]]></Description>
+</Output>
+<Input MAPSName="imageIn">
+<Alias>imageIn</Alias>
+<Description><![CDATA[Type IplImage (GRAY, RGB, BGR mainly).]]></Description>
+</Input>
+</Documentation>
+</Lang>
+</ComponentResources>

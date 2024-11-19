@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="" xsi:noNamespaceSchemaLocation="http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>OS-independent</TargetOS>
+<Lang lang="ENG">
+<GroupName>Image processing</GroupName>
+<Documentation>
+<Component>
+<Alias>Overlay Drawing</Alias>
+<Description>
+<span><![CDATA[
+Allows overlay of graphics primitives (RTMaps drawing objects) onto images using the OpenCV library.
+
+This component is similar to the Overlay Drawing component available in section "Viewers" but the result might look
+
+nicer (particularly for text objects where this component supports some fonts).]]></span>
+</Description>
+</Component>
+<Property MAPSName="synchronization">
+<Alias>Synchronization</Alias>
+<Description>
+<span><![CDATA[Determines when the component performs its job.
+
+<ul>
+
+<li><b>on images: </b> Image output is triggered each time a new image is received. Graphical objects are resampled.</li>
+
+<li><b>on shapes: </b>Image output is triggered each time a new graphical object is received. Images are resampled.</li>
+
+<li><b>Synchronized: </b>Image output is triggered each time an image and an object with corresponding timestamps are received (see also Synchro tolerance).</li>
+
+</ul>]]></span>
+</Description>
+<DefaultValue>on images</DefaultValue>
+</Property>
+<Property MAPSName="synchrotolerance">
+<Alias>Synchro tolerance</Alias>
+<Description>
+<span><![CDATA[Specifies the synchronization tolerance between images and objects timestamps when used in "synchronized" mode (see Synchronization property).]]></span>
+</Description>
+<DefaultValue>0</DefaultValue>
+</Property>
+<Property MAPSName="thickness">
+<Alias>Thickness</Alias>
+<Description>
+<span><![CDATA[Thickness of the drawn lines (in pixels). If set to 0, shapes like rectangles and circles are filled.
+
+The "width" field specified in the received objects is ignored.]]></span>
+</Description>
+<DefaultValue>1</DefaultValue>
+</Property>
+<Property MAPSName="drawbkg">
+<Alias>Draw text background</Alias>
+<Description>
+<span><![CDATA[Applies to text objects only. When true, a background (color specified in the text object itself) is drawn behind the text object. Otherwise, the background is left transparent.]]></span>
+</Description>
+<DefaultValue>false</DefaultValue>
+</Property>
+<Property MAPSName="font">
+<Alias>Font</Alias>
+<Description>
+<span><![CDATA[A variety of fonts that can be used to overlay text objects.]]></span>
+</Description>
+<DefaultValue>CV_FONT_HERSHEY_SIMPLEX</DefaultValue>
+</Property>
+<Property MAPSName="italic">
+<Alias>Italic</Alias>
+<Description>
+<span><![CDATA[Specifies whether or not the overlaid text has to be italic.]]></span>
+</Description>
+<DefaultValue>false</DefaultValue>
+</Property>
+<Output MAPSName="output">
+<Alias>Output</Alias>
+<Description>
+<span><![CDATA[Outputs images with shapes overlaid. Output images have the same format as the received images.]]></span>
+</Description>
+</Output>
+<Input MAPSName="images">
+<Alias>Images</Alias>
+<Description>
+<span><![CDATA[Accepts images of type IplImage.]]></span>
+</Description>
+</Input>
+<Input MAPSName="shapes">
+<Alias>Shapes</Alias>
+<Description>
+<span><![CDATA[Accepts graphical primitives (MAPSDrawingObjects)]]></span>
+</Description>
+</Input>
+</Documentation>
+</Lang>
+</ComponentResources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OpenCV_ChannelsSplitter" xsi:schemaLocation="http://schemas.intempora.com/RTMaps/2011/ComponentResources http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>OS-independent</TargetOS>
+<Lang lang="ENG">
+<GroupName>Image processing</GroupName>
+<Documentation>
+<Component>
+<Alias>Channels Splitter</Alias>
+<Description><![CDATA[
+Divides a 3-channel image into several 
+single-channel GRAY images.]]></Description>
+</Component>
+<Property MAPSName="outputChannel1">
+<Alias>Output channel 1</Alias>
+<Description><![CDATA[Determines whether the first channel of the input image is output or not.]]></Description>
+</Property>
+<Property MAPSName="outputChannel2">
+<Alias>Output channel 2</Alias>
+<Description><![CDATA[Determines whether the second channel of the input image is output or not.]]></Description>
+</Property>
+<Property MAPSName="outputChannel3">
+<Alias>Output channel 3</Alias>
+<Description><![CDATA[Determines whether the first channel of the input image is output or not.]]></Description>
+</Property>
+<Property MAPSName="threaded">
+<Alias>threaded</Alias>
+<Description/>
+</Property>
+<Property MAPSName="priority">
+<Alias>priority</Alias>
+<Description/>
+</Property>
+<Input MAPSName="imageIn">
+<Alias>imageIn</Alias>
+<Description/>
+</Input>
+</Documentation>
+</Lang>
+</ComponentResources>

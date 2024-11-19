@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OpenCV_VideoMuxer" xsi:noNamespaceSchemaLocation="http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>OS-independent</TargetOS>
+<Lang lang="ENG">
+<GroupName>Image processing</GroupName>
+<Documentation>
+<Component>
+<Alias>Video Muxer</Alias>
+<Description>
+<span><![CDATA[
+<p>This component allows you to concatenate a number of source videos into a single one 
+by simply specifying
+the destination position and optionally the destination size of each input stream.</p>
+<br/>
+Ex:
+<br/>
+<p>
+<img src="video_muxer.png"/>
+</p>
+
+<p><em>NOTE:</em>
+<ul>
+<li>The Z-order is determined by the order of the inputs: if images 1 and 2 
+overlap, image 2 will be drawn on top of image 1.</li>
+<li>The image formats on the inputs have to be the same.</li>
+</ul></p>]]></span>
+</Description>
+</Component>
+<Property MAPSName="nb_inputs">
+<Alias>Nb of inputs</Alias>
+<Description>
+<span><![CDATA[Number of desired input video streams.]]></span>
+</Description>
+<DefaultValue>2</DefaultValue>
+</Property>
+<Property MAPSName="sampling_mode">
+<Alias>Sampling Mode</Alias>
+<Description>
+<span><![CDATA[This property controls when the component executes:
+<ul>
+<li>Triggered: when an image is received on the Trigger Input (see corresponding property).</li>
+<li>Synchronized: when images within the specified timestamp Synchro Tolerance (see property) are received on all inputs.</li>
+<li>Asynchronous: when an image is received on any input.</li>
+</ul>]]></span>
+</Description>
+<DefaultValue>Triggered</DefaultValue>
+</Property>
+<Property MAPSName="trigger_input">
+<Alias>Trigger input</Alias>
+<Description>
+<span><![CDATA[In Triggered Sampling Mode, this property selects the trigger input: when a new image will arrive on the selected trigger
+input, the component will retrieve the most recent images on the other inputs,
+build the output image and generate it.<br/>
+This way, the output frequency will be the one of the trigger input.]]></span>
+</Description>
+<DefaultValue>1</DefaultValue>
+</Property>
+<Property MAPSName="synchro_tolerance">
+<Alias>Synchro Tolerance</Alias>
+<Description>
+<span><![CDATA[In Synchronized sampling mode, this property controls the maximum difference accepted in the input image timestamps. When images are received with timestamps within this tolerance, this component executes.]]></span>
+</Description>
+</Property>
+<Property MAPSName="out_image_width">
+<Alias>Out image width</Alias>
+<Description>
+<span><![CDATA[Defines the final size (if needed) of the output image: if the value is left
+to -1, the component will generate images with an auto calculated width in order
+to fit all the input images according to their positions and width.]]></span>
+</Description>
+<DefaultValue>-1</DefaultValue>
+</Property>
+<Property MAPSName="out_image_height">
+<Alias>Out image height</Alias>
+<Description>
+<span><![CDATA[Defines the final size (if needed) of the output image: if the value is left
+to -1, the component will generate images with an auto calculated height in order
+to fit all the input images according to their positions and height.]]></span>
+</Description>
+<DefaultValue>-1</DefaultValue>
+</Property>
+<Property MAPSName="image_([0-9]+)_left">
+<Alias>Image $1 Left</Alias>
+<Description>
+<span><![CDATA[Specifies the left position of the Xth image (in pixels) in the resulting
+output image (before eventual resize due to the Output Image Width/Height properties).]]></span>
+</Description>
+<DefaultValue>0</DefaultValue>
+</Property>
+<Property MAPSName="image_([0-9]+)_top">
+<Alias>Image $1 Top</Alias>
+<Description>
+<span><![CDATA[Specifies the top position of the Xth image (in pixels) in the resulting
+output image (before eventual resize due to the Output Image Width/Height properties).]]></span>
+</Description>
+<DefaultValue>0</DefaultValue>
+</Property>
+<Property MAPSName="image_([0-9]+)_width">
+<Alias>Image $1 Width</Alias>
+<Description>
+<span><![CDATA[Specifies the width of the Xth image (in pixels) in the resulting
+output image (before eventual resize due to the Output Image Width/Height properties). Set to -1 to keep the input image width unchanged.]]></span>
+</Description>
+<DefaultValue>-1</DefaultValue>
+</Property>
+<Property MAPSName="image_([0-9]+)_height">
+<Alias>Image $1 Height</Alias>
+<Description>
+<span><![CDATA[Specifies the height of the Xth image (in pixels) in the resulting
+output image (before eventual resize due to the Output Image Width/Height properties). Set to -1 to keep the input image height unchanged.]]></span>
+</Description>
+<DefaultValue>-1</DefaultValue>
+</Property>
+<Property MAPSName="image_([0-9]+)_z_order">
+<Alias>Image $1 Z Order</Alias>
+<Description>
+<span><![CDATA[Defines the level in the order of drawing : higher values will bring the image
+on top, lower values will send the image towards the background. This value has
+no meaning in itself but compared to the other images Z orders. Ex:
+<p>If image 1 has a Z order of 1, image 2 has a Z order of 2, and image 1 and 2
+overlap, then image 2 will be drawn on top of image 1.</p>
+<p>If image 1 has a Z order of 1, whether image 2 has a Z order of 2 or 3 or 10 
+doesn't have any effect as long as it remains higher than image 1 Z order</p>
+<p>If 2 or more images have the same Z order, the behaviour is undefined.</p>]]></span>
+</Description>
+<DefaultValue>Input Index</DefaultValue>
+</Property>
+<Output MAPSName="imageOut">
+<Alias>imageOut</Alias>
+<Description/>
+</Output>
+</Documentation>
+</Lang>
+</ComponentResources>

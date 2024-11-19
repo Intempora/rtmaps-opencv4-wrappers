@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OpenCV_Morphology" xsi:schemaLocation="http://schemas.intempora.com/RTMaps/2011/ComponentResources http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>OS-independent</TargetOS>
+<Lang lang="ENG">
+<GroupName>Image processing</GroupName>
+<Documentation>
+<Component>
+<Alias>Morphology</Alias>
+<Description><![CDATA[
+This component can perform some standard Morphological operations such as Erode, Dilate,
+Open, Close, etc...<br/>
+]]></Description>
+</Component>
+<Property MAPSName="operation">
+<Alias>Operation</Alias>
+<Description><![CDATA[The component supports the following operations:
+<ul>
+<li>Erode: erodes the source image using the specified structuring element
+that determines the shape of a pixel neighborhood over which the minimum is taken:
+<pre>
+dst=erode(src,element):  dst(x,y)=min<sub>((x',y') in element))</sub>src(x+x',y+y')
+</pre>
+<p>In case of color image, each channel is processed independently.</p></li>
+<li>Dilate: dilates the source image using the specified structuring element
+that determines the shape of a pixel neighborhood over which the maximum is taken:
+<pre>
+dst=dilate(src,element):  dst(x,y)=max<sub>((x',y') in element))</sub>src(x+x',y+y')
+</pre>
+<p>In case of color image, each channel is processed independently.</p></li>
+<li>Open: this operation is made by eroding then dilating the image again.
+<pre>
+dst=open(src,element)=dilate(erode(src,element),element)
+</pre></li>
+<li>Close: this operation is made by dilating then eroding the image again.
+<pre>
+dst=close(src,element)=erode(dilate(src,element),element)
+</pre></li>
+<li>Gradient: morphological gradient.
+<pre>
+dst=morph_grad(src,element)=dilate(src,element)-erode(src,element)
+</pre></li>
+<li>Top hat: 
+<pre>
+dst=tophat(src,element)=src-open(src,element)
+</pre></li>
+<li>Black hat:
+<pre>
+dst=blackhat(src,element)=close(src,element)-src
+</pre></li>
+</ul>]]></Description>
+</Property>
+<Property MAPSName="structuring_element_shape">
+<Alias>Structuring element shape</Alias>
+<Description><![CDATA[Defines the shape of the structuring element.<br/>
+The following values are supported:
+<ul>
+<li>Rectangle: a rectangular element</li>
+<li>Cross: a cross-shaped element</li>
+<li>Ellipse: an elliptic element</li>
+<li>Custom: a user-defined element. In this case, the element is defined via the <code>Custom structuring element</code> property.</li>
+</ul>
+]]></Description>
+</Property>
+<Property MAPSName="structuring_element_cols">
+<Alias>Structuring element cols</Alias>
+<Description><![CDATA[Number of columns in the structuring element.]]></Description>
+</Property>
+<Property MAPSName="structuring_element_rows">
+<Alias>Structuring element rows</Alias>
+<Description><![CDATA[Number of rows in the structuring element.]]></Description>
+</Property>
+<Property MAPSName="structuring_element_anchor_x">
+<Alias>Structuring element anchor X</Alias>
+<Description><![CDATA[Relative horizontal offset of the anchor point.]]></Description>
+</Property>
+<Property MAPSName="structuring_element_anchor_y">
+<Alias>Structuring element anchor Y</Alias>
+<Description><![CDATA[Relative vertical offset of the anchor point.]]></Description>
+</Property>
+<Property MAPSName="iterations">
+<Alias>Iterations</Alias>
+<Description><![CDATA[Number of times the currently selected morphological operation is applied to each image.]]></Description>
+</Property>
+<Property MAPSName="threaded">
+<Alias>threaded</Alias>
+<Description/>
+</Property>
+<Property MAPSName="priority">
+<Alias>priority</Alias>
+<Description/>
+</Property>
+<Property MAPSName="custom_structuring_element">
+<Alias>Custom structuring element</Alias>
+<Description><![CDATA[User-defined matrix that determines the size and shape of the structuring element.
+<br/>
+The matrix must start with an [ and end with an ].
+<br/>
+The values are defined row by row, each row being separated from the following one by a ;
+<br/>
+Within each row, values are separated by ,]]></Description>
+<DefaultValue>[0,1,0;1,1,1;0,1,0]</DefaultValue>
+</Property>
+<Output MAPSName="imageOut">
+<Alias>imageOut</Alias>
+<Description/>
+</Output>
+<Input MAPSName="imageIn">
+<Alias>imageIn</Alias>
+<Description/>
+</Input>
+</Documentation>
+</Lang>
+</ComponentResources>

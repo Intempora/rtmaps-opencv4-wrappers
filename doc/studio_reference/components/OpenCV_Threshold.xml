@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OpenCV_Threshold" xsi:schemaLocation="http://schemas.intempora.com/RTMaps/2011/ComponentResources http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>OS-independent</TargetOS>
+<Lang lang="ENG">
+<GroupName>Image processing</GroupName>
+<Documentation>
+<Component>
+<Alias>Threshold</Alias>
+<Description><![CDATA[
+<p>Applies fixed-level or adaptive threshold to images.</p>
+<p>The Fixed-level threshold is typically used to get bi-level (binary) image out of a grayscale image
+or for removing a noise, i.e. filtering out pixels with too small or too large values.
+There are several types of thresholding the function supports that are determined by the <code>Threshold type</code>:</p>
+<pre>
+Type=Binary:
+dst(x,y) = max_value, if src(x,y)=threshold
+           0, otherwise
+
+Type=Binary inverted:
+dst(x,y) = 0, if src(x,y)=threshold
+           max_value, otherwise
+
+Type=Truncate:
+dst(x,y) = threshold, if src(x,y)=threshold
+           src(x,y), otherwise
+
+Type=To zero:
+dst(x,y) = src(x,y), if src(x,y)=threshold
+           0, otherwise
+
+Type=To zero inverted:
+dst(x,y) = 0, if src(x,y)=threshold
+           src(x,y), otherwise
+
+</pre>
+<p>And this is the visual description of thresholding types:</p>
+<p>
+<image align="center" src="threshold.png">
+</p>
+<p></p>
+<p>The adaptive threshold transforms any channel of an image to binary according to the formulae:</p>
+<pre>
+Type=<code>Binary</code>:
+dst(x,y) = max_value, if src(x,y)=T(x,y)
+           0, otherwise
+Type=<code>Binary inverted</code>:
+dst(x,y) = 0, if src(x,y)=T(x,y)
+           max_value, otherwise
+</pre>
+<p>where T<sub>I</sub> is a threshold calculated individually for each pixel.</p>
+<p>
+For the method <code>Mean</code> it is a mean of <code>Block size</code> x <code>Block size</code>
+pixel neighborhood, subtracted by <code>Param 1</code>.</p>
+<p>
+For the method <code>Gaussian</code> it is a weighted sum (gaussian) of
+<code>Block size</code> x <code>Block size</code> pixel neighborhood, subtracted by <code>Param 1</code>.</p>
+
+]]></Description>
+</Component>
+<Property MAPSName="mode">
+<Alias>Mode</Alias>
+<Description/>
+</Property>
+<Property MAPSName="threaded">
+<Alias>threaded</Alias>
+<Description/>
+</Property>
+<Property MAPSName="priority">
+<Alias>priority</Alias>
+<Description/>
+</Property>
+<Property MAPSName="threshold">
+<Alias>Threshold</Alias>
+<Description/>
+</Property>
+<Property MAPSName="max_value">
+<Alias>Max value</Alias>
+<Description/>
+</Property>
+<Property MAPSName="type">
+<Alias>Type</Alias>
+<Description/>
+</Property>
+<Property MAPSName="adaptive_method">
+<Alias>Adaptive method</Alias>
+<Description/>
+</Property>
+<Property MAPSName="block_size">
+<Alias>Block size</Alias>
+<Description/>
+</Property>
+<Property MAPSName="param1">
+<Alias>Param 1</Alias>
+<Description/>
+</Property>
+<Output MAPSName="imageOut">
+<Alias>imageOut</Alias>
+<Description/>
+</Output>
+<Input MAPSName="imageIn">
+<Alias>imageIn</Alias>
+<Description/>
+</Input>
+</Documentation>
+</Lang>
+</ComponentResources>

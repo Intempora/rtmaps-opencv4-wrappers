@@ -1,0 +1,12 @@
+/build*
+/packages
+/opencv.u/Debug
+/opencv.u/Release
+*.ncb
+*.suo
+*.sdf
+*.opensdf
+*.user
+/.vs
+/opencv
+/Test

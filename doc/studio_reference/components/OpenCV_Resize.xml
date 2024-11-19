@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OpenCV_Resize" xsi:schemaLocation="http://schemas.intempora.com/RTMaps/2011/ComponentResources http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>OS-independent</TargetOS>
+<Lang lang="ENG">
+<GroupName>Image processing</GroupName>
+<Documentation>
+<Component>
+<Alias>Resize</Alias>
+<Description><![CDATA[
+Resizes images.]]></Description>
+</Component>
+<Property MAPSName="new_size_x">
+<Alias>New size X</Alias>
+<Description><![CDATA[Horizontal size in pixels of the resulting image.]]></Description>
+</Property>
+<Property MAPSName="new_size_y">
+<Alias>New size Y</Alias>
+<Description><![CDATA[Vertical size in pixels of the resulting image.]]></Description>
+</Property>
+<Property MAPSName="interpolation">
+<Alias>Interpolation</Alias>
+<Description><![CDATA[Interpolation method to use for resizing. Supported values are:
+<ul>
+<li>Nearest neighbour</li>
+<li>Bilinear </li>
+<li>Area: resampling using pixel area relation. It is the preferred method for image decimation: it gives moire-free results. In case of zooming, it is similar to the Nearest Neighbour method.</li>
+<li>Cubic: bicubic interpolation.</li>
+</ul>]]></Description>
+</Property>
+<Output MAPSName="imageOut">
+<Alias>imageOut</Alias>
+<Description/>
+</Output>
+<Input MAPSName="imageIn">
+<Alias>imageIn</Alias>
+<Description/>
+</Input>
+</Documentation>
+</Lang>
+</ComponentResources>

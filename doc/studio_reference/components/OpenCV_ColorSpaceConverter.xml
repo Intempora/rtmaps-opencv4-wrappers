@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OpenCV_ColorSpaceConverter" xsi:schemaLocation="http://schemas.intempora.com/RTMaps/2011/ComponentResources http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>OS-independent</TargetOS>
+<Lang lang="ENG">
+<GroupName>Image processing</GroupName>
+<Documentation>
+<Component>
+<Alias>Colorspace Converter</Alias>
+<Description><![CDATA[
+Converts image from one color space to another.<br/>
+The function used is <code>cvCvtColor</code> which converts the input image from one color space to another. 
+The function ignores the colorModel and channelSeq fields of the IplImage header, so the source image color 
+space should be specified correctly (including order of the channels in case of RGB space, e.g. 
+BGR means 24-bit format with B0 G0 R0 B1 G1 R1 ... layout,
+whereas RGB means 24-bit format with R0 G0 B0 R1 G1 B1 ... layout).<br/>
+<p>
+Of course, in case of linear transformations, the range can be arbitrary,
+but in order to get correct results in case of non-linear transformations,
+the input image should be scaled if necessary.
+</p><p>
+The function can do the following transformations:
+<ul>
+<li>
+<pre>
+RGB-&gt;Gray: Y&lt;-0.299*R + 0.587*G + 0.114*B
+Gray-&gt;RGB: R&lt;-Y G&lt;-Y B&lt;-Y
+</pre>
+</li>
+<li>RGB&lt;=&gt;YCrCb JPEG (a.k.a. YUV or YCC) (<code>BGR2YCrCb, RGB2YCrCb, YCrCb2BGR, YCrCb2RGB</code>)
+<pre>
+Y &lt;- 0.299*R + 0.587*G + 0.114*B
+Cr &lt;- (R-Y)*0.713 + delta
+Cb &lt;- (B-Y)*0.564 + delta
+
+R &lt;- Y + 1.403*(Cr - delta)
+G &lt;- Y - 0.344*(Cr - delta) - 0.714*(Cb - delta)
+B &lt;- Y + 1.773*(Cb - delta),
+
+where delta =
+128 for 8-bit images,
+32768 for 16-bit images
+0.5 for floating-point images
+
+Y, Cr and Cb cover the whole value range.
+</pre>
+</li>
+<li>RGB&lt;=&gt;HSV (<code>BGR2HSV, RGB2HSV, HSV2BGR, HSV2RGB</code>)
+<p>
+// In case of 8-bit and 16-bit images<br/>
+// R, G and B are converted to floating-point format and scaled to fit the 0..1 range
+</p>
+<pre>
+V &lt;- max(R,G,B)
+S &lt;- (V-min(R,G,B))/V   if V!=0, 0 otherwise
+
+H &lt;- (G - B)*60/S,  if V=R
+H &lt;- 180+(B - R)*60/S,  if V=G
+H &lt;- 240+(R - G)*60/S,  if V=B
+
+if H&lt;0 then H &lt;- H+360
+
+On output 0&lt;=V&lt;=1, 0&lt;=S&lt;=1, 0&lt;=H&lt;=360.
+The values are then converted to the destination data type:
+    8-bit images:
+        V &lt;- V*255, S &lt;- S*255, H &lt;- H/2 (to fit to 0..255)
+    16-bit images (currently not supported):
+        V &lt;- V*65535, S &lt;- S*65535, H &lt;- H
+    32-bit images:
+        H, S, V are left as is
+
+</pre>
+</li>
+</ul>
+The above formulae for converting RGB to/from various color spaces have been taken
+from multiple sources on Web, primarily from <a href="#paper_ford98">Color Space Conversions (<b>[Ford98]</b>)</a>
+document at Charles Poynton's site.
+</p>]]></Description>
+</Component>
+<Property MAPSName="input_colorspace">
+<Alias>Input colorspace</Alias>
+<Description><![CDATA[Define the channel sequence of the input images. Set to AUTO in order for the 
+component to adjust automatically to the input image's channel sequence.]]></Description>
+</Property>
+<Property MAPSName="output_colorspace">
+<Alias>Output colorspace</Alias>
+<Description><![CDATA[Determines the channels sequence desired for the output images. If the conversion 
+is not supported (see the supported transformations above), an error is displayed
+in the console and the component shuts down.]]></Description>
+</Property>
+<Property MAPSName="threaded">
+<Alias>threaded</Alias>
+<Description/>
+</Property>
+<Property MAPSName="priority">
+<Alias>priority</Alias>
+<Description/>
+</Property>
+<Output MAPSName="imageOut">
+<Alias>imageOut</Alias>
+<Description/>
+</Output>
+<Input MAPSName="imageIn">
+<Alias>imageIn</Alias>
+<Description/>
+</Input>
+</Documentation>
+</Lang>
+</ComponentResources>

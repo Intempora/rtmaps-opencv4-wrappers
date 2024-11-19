@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ComponentResources xmlns="http://schemas.intempora.com/RTMaps/2011/ComponentResources" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OpenCV_BayerDecoder" xsi:schemaLocation="http://schemas.intempora.com/RTMaps/2011/ComponentResources http://www.intempora.com/schemas/RTMaps/2011/ComponentResources.xsd">
+<Type>Component</Type>
+<IconFile>opencv.png</IconFile>
+<TargetOS>OS-independent</TargetOS>
+<Lang lang="ENG">
+<GroupName>Image processing</GroupName>
+<Documentation>
+<Component>
+<Alias>Color Correction</Alias>
+<Description><![CDATA[
+<p>This component allows to apply gain on each color channel separately.</p>
+]]></Description>
+</Component>
+<Property MAPSName="red">
+<Alias>Red Gain</Alias>
+<Description><![CDATA[Red gain value.]]></Description>
+</Property>
+<Property MAPSName="blue">
+<Alias>Blue Gain</Alias>
+<Description><![CDATA[Blue gain value.]]></Description>
+</Property>
+<Property MAPSName="green">
+<Alias>Green Gain</Alias>
+<Description><![CDATA[Green gain value.]]></Description>
+</Property>
+<Output MAPSName="output">
+<Alias>output</Alias>
+<Description/>
+</Output>
+<Input MAPSName="input">
+<Alias>input</Alias>
+<Description/>
+</Input>
+</Documentation>
+</Lang>
+</ComponentResources>
