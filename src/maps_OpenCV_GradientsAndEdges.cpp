@@ -40,7 +40,7 @@ MAPS_END_OUTPUTS_DEFINITION
 // Use the macros to declare the properties
 MAPS_BEGIN_PROPERTIES_DEFINITION(MAPSOpenCV_GradientsAndEdges)
     MAPS_PROPERTY_ENUM("type", "Sobel|Laplace|Canny", 2, false, false)
-    MAPS_PROPERTY_ENUM("aperture_size", "3|5|7", 2, false, true)
+    MAPS_PROPERTY_ENUM("aperture_size", "3|5|7", 0, false, true)
     MAPS_PROPERTY("xorder", 1, false, true)
     MAPS_PROPERTY("yorder", 0, false, true)
     MAPS_PROPERTY("threshold1", 50, false, true)
@@ -54,7 +54,7 @@ MAPS_END_ACTIONS_DEFINITION
 
 //V1.1: aperture size is limited to 3, 5 and 7 (no more 1).
 // Use the macros to declare this component (OpenCV_GradientsAndEdges) behaviour
-MAPS_COMPONENT_DEFINITION(MAPSOpenCV_GradientsAndEdges, "OpenCV_GradientsAndEdges", "2.0.3", 128,
+MAPS_COMPONENT_DEFINITION(MAPSOpenCV_GradientsAndEdges, "OpenCV_GradientsAndEdges", "2.0.4", 128,
                             MAPS::Threaded|MAPS::Sequential, MAPS::Threaded,
                             -1, // Nb of inputs
                             -1, // Nb of outputs

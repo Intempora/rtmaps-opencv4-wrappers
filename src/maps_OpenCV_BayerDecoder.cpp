@@ -41,7 +41,7 @@ MAPS_END_OUTPUTS_DEFINITION
 
 // Use the macros to declare the properties
 MAPS_BEGIN_PROPERTIES_DEFINITION(MAPSBayerDecoder)
-    MAPS_PROPERTY_ENUM("input_type", "IPLImage|MAPSImage", 1, false, true)
+    MAPS_PROPERTY_ENUM("input_type", "IPLImage|MAPSImage", 0, false, true)
     MAPS_PROPERTY_ENUM("input_pattern", "BG|GB|RG|GR", 0, false, true)
     MAPS_PROPERTY_ENUM("outputFormat", "BGR|RGB", 0, false, false)
 MAPS_END_PROPERTIES_DEFINITION
@@ -51,7 +51,7 @@ MAPS_BEGIN_ACTIONS_DEFINITION(MAPSBayerDecoder)
 MAPS_END_ACTIONS_DEFINITION
 
 // Use the macros to declare this component (ColorConvert_Bayer2RGB) behaviour
-MAPS_COMPONENT_DEFINITION(MAPSBayerDecoder,"OpenCV_BayerDecoder", "2.1.1", 128,
+MAPS_COMPONENT_DEFINITION(MAPSBayerDecoder,"OpenCV_BayerDecoder", "2.1.2", 128,
                             MAPS::Threaded|MAPS::Sequential, MAPS::Sequential,
                             0, // Nb of inputs
                             -1, // Nb of outputs

@@ -39,6 +39,7 @@ class MAPSOpenCV_Smooth : public MAPSComponent
 private:
     void AllocateOutputBufferSize(const MAPSTimestamp /*ts*/, const MAPS::ArrayView <MAPS::InputElt<>> inElts);
     void ProcessData(const MAPSTimestamp ts, const size_t inputThatAnswered, const MAPS::ArrayView<MAPS::InputElt<>> inElts);
+    void ProcessDataSync(const MAPSTimestamp ts, const MAPS::ArrayView<MAPS::InputElt<>> inElts);
     void ProcessIplImage(const IplImage& imageIn, IplImage& imageOut);
     void ProcessRoi(const MAPS::InputElt<>& Elt);
 
@@ -51,12 +52,13 @@ private :
     int m_param2;
     MAPSFloat64 m_param3;
     MAPSFloat64 m_param4;
-    std::unique_ptr<IplROI> m_pLastRoi;
+    std::vector<IplROI> m_vLastRois;
 
     int m_width;
     int m_height;
     cv::Mat m_tempImageIn;
     cv::Mat m_tempImageOut;
+    int m_syncMode;
 
     std::unique_ptr<MAPS::InputReader> m_inputReader;
 };
